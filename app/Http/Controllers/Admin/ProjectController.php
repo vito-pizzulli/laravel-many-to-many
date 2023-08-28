@@ -40,6 +40,7 @@ class ProjectController extends Controller
         $data = $request->validate([
             'title'=>"required|unique:projects|min:3|max:255",
             'type_id' => 'required|exists:types,id',
+            'technologies' => ['exists:technologies,id'],
             'description'=>"required|min:3",
             'link'=>"url:https",
             'creation_date'=>"required|date",
@@ -52,6 +53,7 @@ class ProjectController extends Controller
         $newProject = Project::create($data);
         $newProject->slug = Str::of("$newProject->id " . $data['title'])->slug('-');
         $newProject->save();
+        $newProject->technologies()->sync( $request->technologies);
         return redirect()->route('admin.projects.index')->with('createSuccess', 'Project successfully added!');
     }
 
