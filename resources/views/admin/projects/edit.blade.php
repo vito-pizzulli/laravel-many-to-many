@@ -12,7 +12,7 @@
             <input type="text" class="form-control" id="title" name="title" value="{{ old( 'title' , $project->title) }}">
         </div>
         @error('title')
-                    <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
         <div class="mb-3">
@@ -25,7 +25,21 @@
             </select>
         </div>
         @error('type_id')
-                    <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+
+        <div class="mb-3">
+            <label for="technologies" class="form-label">Technologies:</label>
+            <div>
+                @foreach ($technologies as $technology)
+                    <input type="checkbox" name="technologies[]" class="form-check-input" id="technologies" value="{{ $technology->id }}"
+                        @if ($project->technologies->contains($technology->id) ) checked @endif>
+                    <label for="technologies" class="form-check-label me-3">{{ $technology->name }}</label>
+                @endforeach
+            </div>
+        </div>
+        @error('technologies')
+            <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
         <div class="mb-3">
@@ -33,7 +47,7 @@
             <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ old( 'description' , $project->description) }}</textarea>
         </div>
         @error('description')
-                    <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
         <div class="mb-3">
@@ -41,7 +55,7 @@
             <input type="text" class="form-control" id="link" name="link" value="{{ old( 'link' , $project->link) }}">
         </div>
         @error('link')
-                    <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
         <div class="mb-3">
@@ -49,7 +63,7 @@
             <input type="date" class="form-control" id="creation_date" name="creation_date" value="{{ old( 'creation_date' , $project->creation_date) }}">
         </div>
         @error('creation_date')
-                    <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
         <div class="mb-3">
@@ -58,7 +72,7 @@
             <div id="imageHelp" class="form-text">Upload a preview image for your project.</div>
         </div>
         @error('image')
-                    <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         
         <button type="submit" class="btn btn-success mb-1">Confirm</button>
