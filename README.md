@@ -17,3 +17,7 @@
 - visualizzare nella pagina di dettaglio di un progetto le tecnologie utilizzate, se presenti;
 - permettere all’utente di associare le tecnologie nella pagina di creazione e modifica di un progetto;
 - gestire il salvataggio dell’associazione progetto-tecnologie con opportune regole di validazione.
+
+## Bonus
+
+<p>Creare il seeder per il model Technology.</p>
