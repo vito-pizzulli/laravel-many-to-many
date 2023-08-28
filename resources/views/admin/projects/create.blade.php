@@ -28,6 +28,22 @@
         @enderror
 
         <div class="mb-3">
+            <label for="technologies" class="form-label">Technologies:</label>
+            <div>
+                @foreach ($technologies as $technology)
+                    <input type="checkbox" name="technologies[]" class="form-check-input" id="technologies" value="{{ $technology->id }}"
+                        @if( in_array($technology->id, old('technologies', []))) checked @endif>
+                    <label for="technologies" class="form-check-label me-3">
+                        {{ $technology->name }}
+                    </label>
+                @endforeach
+            </div>
+        </div>
+        @error('technologies')
+                    <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+
+        <div class="mb-3">
             <label for="description" class="form-label">Description:</label>
             <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{ old( 'description') }}</textarea>
         </div>
