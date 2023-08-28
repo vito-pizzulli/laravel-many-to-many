@@ -33,7 +33,11 @@
             <div>
                 @foreach ($technologies as $technology)
                     <input type="checkbox" name="technologies[]" class="form-check-input" id="technologies" value="{{ $technology->id }}"
-                        @if ($project->technologies->contains($technology->id) ) checked @endif>
+                        @if(old('technologies'))
+                            @if(in_array($technology->id, old('technologies', []))) checked @endif
+                        @else
+                            @if($project->technologies->contains($technology->id)) checked @endif
+                        @endif>
                     <label for="technologies" class="form-check-label me-3">{{ $technology->name }}</label>
                 @endforeach
             </div>
