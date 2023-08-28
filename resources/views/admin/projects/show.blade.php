@@ -21,7 +21,7 @@
             <h1 class="card-title fs-3 d-inline-block me-2 mb-3">Title: {{ $project->title }} </h1>
             <span class="badge text-bg-primary fs-6 me-2">{{ $project->type->name }}</span>
             @foreach ($project->technologies as $technology)
-                <span class="badge rounded-pill text-bg-warning fs-6">{{ $technology->name }}</span>
+                <span class="badge rounded-pill text-bg-info fs-6">{{ $technology->name }}</span>
             @endforeach
             <p class="card-text">Description: {{ $project->description }} </p>
             <p class="card-text">GitHub Page Link: {{ $project->link }} </p>
