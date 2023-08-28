@@ -22,7 +22,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
                 <th scope="col">Type</th>
-                <th scope="col">GitHub Page Link</th>
+                <th scope="col">Technologies</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -32,7 +32,7 @@
                     <th scope="row"> {{ $project->id }} </th>
                     <td> {{ $project->title }} </td>
                     <td> {{ $project->type->name }} </td>
-                    <td> {{ $project->link }} </td>
+                    <td>{{ $project->technologies->isEmpty() ? 'Empty' : $project->technologies->pluck('name')->implode(', ') }}</td>
                     <td>
                         <a class="btn btn-sm btn-primary" href="{{route('admin.projects.show', $project) }}">View</a>
                         <a class="btn btn-sm btn-warning" href="{{route('admin.projects.edit', $project) }}">Edit</a>
