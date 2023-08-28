@@ -83,6 +83,7 @@ class ProjectController extends Controller
         $data = $request->validate([
             "title" => ["required", "min:3", "max:255", Rule::unique('projects')->ignore($project->id)],
             'type_id' => 'required|exists:types,id',
+            'technologies' => ['exists:technologies,id'],
             'description'=>"required|min:3",
             'link'=>"url:https",
             'creation_date'=>"required|date",
@@ -94,6 +95,7 @@ class ProjectController extends Controller
         $data['image'] = $img_path;
         $project->slug = Str::of("$project->id " . $data['title'])->slug('-');
         $project->update($data);
+        $project->technologies()->sync( $request->technologies);
         return redirect()->route('admin.projects.show', compact('project'))->with('editSuccess', 'Project successfully edited!');
     }
 
