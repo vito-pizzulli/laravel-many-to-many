@@ -34,7 +34,7 @@
                 <tr>
                     <th scope="row"> {{ $project->id }} </th>
                     <td> {{ $project->title }} </td>
-                    <td> {{ $project->type->name }} </td>
+                    <td>{{ $project->type->name ?? 'Empty' }}</td>
                     <td>{{ $project->technologies->isEmpty() ? 'Empty' : $project->technologies->pluck('name')->implode(', ') }}</td>
                     <td>
                         <a class="btn btn-sm btn-primary" href="{{route('admin.projects.show', $project) }}">View</a>
