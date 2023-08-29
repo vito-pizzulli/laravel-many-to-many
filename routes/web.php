@@ -33,7 +33,7 @@ Route::name('admin.')->middleware('auth')->group(function () {
 
 Route::name('admin.')->middleware('auth')->group(function () {
     Route::get('/types/trashed', [ AdminTypeController::class, 'trashed'])->name('types.trashed');
-    Route::post('types/trashed/{Type}', [ AdminTypeController::class, 'restore'])->name('types.restore');
-    Route::delete('types/trashed/{Type}', [ AdminTypeController::class, 'forceDelete'])->name('types.forceDelete');
+    Route::post('types/trashed/{type}', [ AdminTypeController::class, 'restore'])->name('types.restore');
+    Route::delete('types/trashed/{type}', [ AdminTypeController::class, 'forceDelete'])->name('types.forceDelete');
     Route::resource('/types', AdminTypeController::class);
 });
