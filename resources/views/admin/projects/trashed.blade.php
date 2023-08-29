@@ -19,7 +19,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
                 <th scope="col">Type</th>
-                <th scope="col">GitHub Page Link</th>
+                <th scope="col">Technologies</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -28,8 +28,8 @@
                 <tr>
                     <th scope="row"> {{ $project->id }} </th>
                     <td> {{ $project->title }} </td>
-                    <td> {{ $project->type->name }} </td>
-                    <td> {{ $project->link }} </td>
+                    <td>{{ $project->type->name ?? 'Empty' }}</td>
+                    <td>{{ $project->technologies->isEmpty() ? 'Empty' : $project->technologies->pluck('name')->implode(', ') }}</td>
                     <td>
                         <form class="d-inline-block" action="{{ route('admin.projects.restore', $project) }}" method="POST" onsubmit="return confirm('Are you sure you want to restore this project?')">
                             @csrf
