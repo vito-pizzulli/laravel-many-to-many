@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class TypeController extends Controller
 {
@@ -22,7 +24,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -30,7 +32,14 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name'=>"required|unique:types|min:3|max:255"
+        ]);
+
+        $newType = new Type;
+        $data['slug'] = Str::of($data['name'])->slug('-');
+        $newType = Type::create($data);
+        return redirect()->route('admin.types.index')->with('createSuccess', 'Type successfully added!');
     }
 
     /**
