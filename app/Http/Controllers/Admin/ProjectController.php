@@ -133,6 +133,7 @@ class ProjectController extends Controller
     {
         $project = Project::onlyTrashed()->findOrFail($slug);
         Storage::delete($project->image);
+        $project->technologies()->detach();
         $project->forceDelete();
         return redirect()->route('admin.projects.trashed')->with('forceDeleteSuccess', 'Project successfully deleted!');
     }
