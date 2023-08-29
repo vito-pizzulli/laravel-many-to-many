@@ -4,6 +4,7 @@ use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\TypeController as AdminTypeController;
+use App\Http\Controllers\Admin\TechnologyController as AdminTechnologyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,4 +37,11 @@ Route::name('admin.')->middleware('auth')->group(function () {
     Route::post('/types/trashed/{type}', [ AdminTypeController::class, 'restore' ])->name('types.restore');
     Route::delete('/types/trashed/{type}', [ AdminTypeController::class, 'forceDelete' ])->name('types.forceDelete');
     Route::resource('/types', AdminTypeController::class);
+});
+
+Route::name('admin.')->middleware('auth')->group(function () {
+    Route::get('/technologies/trashed', [ AdminTechnologyController::class, 'trashed' ])->name('technologies.trashed');
+    Route::post('/technologies/trashed/{type}', [ AdminTechnologyController::class, 'restore' ])->name('technologies.restore');
+    Route::delete('/technologies/trashed/{type}', [ AdminTechnologyController::class, 'forceDelete' ])->name('technologies.forceDelete');
+    Route::resource('/technologies', AdminTechnologyController::class);
 });
