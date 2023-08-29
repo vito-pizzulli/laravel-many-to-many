@@ -3,6 +3,7 @@
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
+use App\Http\Controllers\Admin\TypeController as AdminTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,11 @@ Route::name('admin.')->middleware('auth')->group(function () {
     Route::post('projects/trashed/{project}', [ AdminProjectController::class, 'restore'])->name('projects.restore');
     Route::delete('projects/trashed/{project}', [ AdminProjectController::class, 'forceDelete'])->name('projects.forceDelete');
     Route::resource('/projects', AdminProjectController::class);
+});
+
+Route::name('admin.')->middleware('auth')->group(function () {
+    Route::get('/types/trashed', [ AdminTypeController::class, 'trashed'])->name('types.trashed');
+    Route::post('types/trashed/{Type}', [ AdminTypeController::class, 'restore'])->name('types.restore');
+    Route::delete('types/trashed/{Type}', [ AdminTypeController::class, 'forceDelete'])->name('types.forceDelete');
+    Route::resource('/types', AdminTypeController::class);
 });
