@@ -53,17 +53,23 @@ class TypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Type $type)
     {
-        //
+        $data = $request->validate([
+            'name'=>"required|unique:types|min:3|max:255"
+        ]);
+
+        $type->slug = Str::of($data['name'])->slug('-');
+        $type->update($data);
+        return redirect()->route('admin.types.index')->with('editSuccess', 'Type successfully edited!');
     }
 
     /**
