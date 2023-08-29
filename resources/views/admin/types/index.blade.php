@@ -14,6 +14,11 @@
             {{ session('createSuccess') }}
         </div>
     @endif
+    @if (session('editSuccess'))
+        <div class="alert alert-success">
+            {{ session('editSuccess') }}
+        </div>
+    @endif
     @if (session('destroySuccess'))
         <div class="alert alert-success">
             {{ session('destroySuccess') }}
