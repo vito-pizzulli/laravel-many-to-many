@@ -4,7 +4,10 @@
 <div class="container">
     <div class="d-flex justify-content-between mb-3">
         <h1>Projects List</h1>
-        <a class="btn btn-success mb-3" href="{{route('admin.projects.create')}}">Add New</a>
+        <div class="mb-3">
+            <a class="btn btn-success" href="{{route('admin.projects.create')}}">Add New</a>
+            <a class="btn btn-dark" href="{{ route('admin.projects.trashed') }}">Recycle Bin</a>
+        </div>
     </div>
     @if (session('createSuccess'))
         <div class="alert alert-success">
@@ -16,7 +19,7 @@
             {{ session('destroySuccess') }}
         </div>
     @endif
-    <table class="table table-light table-hover">
+    <table class="table table-light table-hover text-center">
         <thead>
             <tr>
                 <th scope="col">ID</th>
