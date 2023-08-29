@@ -12,9 +12,9 @@
     <div class="card mb-3">
 
         @if (str_starts_with($project->image, 'http' ))
-            <img src="{{ $project->image }}" alt="{{ $project->title }}">
+            <img src="{{ $project->image }}" alt="{{ $project->title }}" class="w-50">
         @else
-            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}">
+            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" class="w-75">
         @endif
 
         <div class="card-body">
