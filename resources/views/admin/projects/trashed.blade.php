@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Recycle Bin</h1>
+    <h1 class="mb-4">Projects Recycle Bin</h1>
     @if (session('restoreSuccess'))
         <div class="alert alert-success">
             {{ session('restoreSuccess') }}
