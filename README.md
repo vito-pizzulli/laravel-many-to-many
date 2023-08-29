@@ -18,6 +18,10 @@
 - permettere all’utente di associare le tecnologie nella pagina di creazione e modifica di un progetto;
 - gestire il salvataggio dell’associazione progetto-tecnologie con opportune regole di validazione.
 
-## Bonus
+## Bonus 1
 
 <p>Creare il seeder per il model Technology.</p>
+
+## Bonus 2
+
+<p>Aggiungere le operazioni CRUD per i model Types e Technology, in modo da gestire i tipi e le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.</p>
