@@ -93,14 +93,15 @@ class TypeController extends Controller
     /**
      * Restores the specified Type instance from the trashed ones.
      */
-    public function restore(string $slug){
+    public function restore(string $slug)
+    {
         $type = Type::onlyTrashed()->findOrFail($slug);
         $type->restore();
         return redirect()->route('admin.types.trashed')->with('restoreSuccess', 'Type successfully restored to Types List!');
     }
 
     /**
-     * Permanently deleted the specified Type instance from the database.
+     * Permanently deletes the specified Type instance from the database.
      */
     public function forceDelete(string $slug)
     {

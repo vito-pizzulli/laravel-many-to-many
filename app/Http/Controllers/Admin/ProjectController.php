@@ -120,14 +120,15 @@ class ProjectController extends Controller
     /**
      * Restores the specified Project instance from the trashed ones.
      */
-    public function restore(string $slug){
+    public function restore(string $slug)
+    {
         $project = Project::onlyTrashed()->findOrFail($slug);
         $project->restore();
         return redirect()->route('admin.projects.trashed')->with('restoreSuccess', 'Project successfully restored to Projects List!');
     }
 
     /**
-     * Permanently deleted the specified Project instance from the database.
+     * Permanently deletes the specified Project instance from the database.
      */
     public function forceDelete(string $slug)
     {
