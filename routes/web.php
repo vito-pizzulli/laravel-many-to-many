@@ -20,20 +20,20 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::name('guest.')->group(function () {
-    Route::get('/', [ GuestHomeController::class , 'home'])->name('home');
+    Route::get('/', [ GuestHomeController::class , 'home' ])->name('home');
 });
 
 Route::name('admin.')->middleware('auth')->group(function () {
     Route::get('/home', [ AdminHomeController::class , 'home'])->name('home');
-    Route::get('/projects/trashed', [ AdminProjectController::class, 'trashed'])->name('projects.trashed');
-    Route::post('projects/trashed/{project}', [ AdminProjectController::class, 'restore'])->name('projects.restore');
-    Route::delete('projects/trashed/{project}', [ AdminProjectController::class, 'forceDelete'])->name('projects.forceDelete');
+    Route::get('/projects/trashed', [ AdminProjectController::class, 'trashed' ])->name('projects.trashed');
+    Route::post('/projects/trashed/{project}', [ AdminProjectController::class, 'restore' ])->name('projects.restore');
+    Route::delete('/projects/trashed/{project}', [ AdminProjectController::class, 'forceDelete' ])->name('projects.forceDelete');
     Route::resource('/projects', AdminProjectController::class);
 });
 
 Route::name('admin.')->middleware('auth')->group(function () {
-    Route::get('/types/trashed', [ AdminTypeController::class, 'trashed'])->name('types.trashed');
-    Route::post('types/trashed/{type}', [ AdminTypeController::class, 'restore'])->name('types.restore');
-    Route::delete('types/trashed/{type}', [ AdminTypeController::class, 'forceDelete'])->name('types.forceDelete');
+    Route::get('/types/trashed', [ AdminTypeController::class, 'trashed' ])->name('types.trashed');
+    Route::post('/types/trashed/{type}', [ AdminTypeController::class, 'restore' ])->name('types.restore');
+    Route::delete('/types/trashed/{type}', [ AdminTypeController::class, 'forceDelete' ])->name('types.forceDelete');
     Route::resource('/types', AdminTypeController::class);
 });
