@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 class TypeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Type instances.
      */
     public function index()
     {
@@ -20,7 +20,7 @@ class TypeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Type instance.
      */
     public function create()
     {
@@ -28,7 +28,7 @@ class TypeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Type instance in storage.
      */
     public function store(Request $request)
     {
@@ -43,15 +43,15 @@ class TypeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Type instance.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        return ('The single Type view is disabled.');
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified Type instance.
      */
     public function edit(Type $type)
     {
@@ -59,7 +59,7 @@ class TypeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Type instance in storage.
      */
     public function update(Request $request, Type $type)
     {
@@ -73,10 +73,39 @@ class TypeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Type instance from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index')->with('destroySuccess', 'Type successfully moved to the Recycle Bin!');
+    }
+
+    /**
+     * Display a listing of the trashed Type instances.
+     */
+    public function trashed()
+    {
+        $types = Type::onlyTrashed()->paginate(14);
+        return view('admin.types.trashed', compact('types'));
+    }
+
+    /**
+     * Restores the specified Type instance from the trashed ones.
+     */
+    public function restore(string $slug){
+        $type = Type::onlyTrashed()->findOrFail($slug);
+        $type->restore();
+        return redirect()->route('admin.types.trashed')->with('restoreSuccess', 'Type successfully restored to Types List!');
+    }
+
+    /**
+     * Permanently deleted the specified Type instance from the database.
+     */
+    public function forceDelete(string $slug)
+    {
+        $type = Type::onlyTrashed()->findOrFail($slug);
+        $type->forceDelete();
+        return redirect()->route('admin.types.trashed')->with('forceDeleteSuccess', 'Type successfully deleted!');
     }
 }
